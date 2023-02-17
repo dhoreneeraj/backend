@@ -23,7 +23,7 @@ try {
         throw new Error("Email Already exists");
     }
     // insert into database
-    const user = await user.create({name,email});
+    const user = await User.create({name,email});
     res.status(201).json({
         success:true,
         mesaage: "user created sucessfully",
@@ -53,9 +53,10 @@ try {
 }
 
 
-exports.editUser= async (req,res)  => {
+exports.editUser = async (req,res)  => {
 try {
-    const user = await User.findByIdAndUpdate(req.param.id, req.body);
+    console.log("hello" + req.param.id ) ;
+    const user = await User.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).json({
         success:true,
         mesaage : "user updated successfully"
